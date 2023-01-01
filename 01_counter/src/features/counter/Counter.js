@@ -4,7 +4,6 @@ import { increment, decrement, reset, incrementByAmount } from "./counterSlice";
 
 const Counter = () => {
   const [incrementAmount, setIncrementAmount] = useState(0);
-  console.log(Number(incrementAmount));
   // redux
   const { count } = useSelector(state => state.counter);
   const dispatch = useDispatch();
