@@ -2,15 +2,15 @@ import React, { useState } from "react";
 // Redux
 import { useDispatch, useSelector } from "react-redux";
 import { selectAllUsers } from "../users/usersSlice";
-// that will give us randomId
-import { postAdded } from "./postsSlice";
-//  assets
+import { addNewPost } from "./postsSlice";
+// assets
 import Cover from "../../assets/cover.png";
 
 const AddPostForm = () => {
   const dispatch = useDispatch();
   // users-data from users-slice
   const users = useSelector(selectAllUsers);
+
   // input-States
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -22,16 +22,19 @@ const AddPostForm = () => {
   const onContentChanged = e => setContent(e.target.value);
   const onAuthorChanged = e => setUserId(e.target.value);
 
+  // use these state ==> true
+  const canSave = [title, content, userId].every(Boolean);
   // addPost button function
   const onSavePostClicked = () => {
-    if (title && content) {
-      dispatch(postAdded(title, content, userId));
+    if (canSave) {
+      // unwrap func that's function from redux toolkit to send a promise if the
+      // action fulfilled or rejected to track the action//
+      dispatch(addNewPost({ title, body: content })).unwrap();
       setTitle("");
       setContent("");
+      setUserId("");
     }
   };
-  // use these state ==> true
-  const canSave = Boolean(title) && Boolean(content) && Boolean(userId);
   // Looping users-data
   const usersOptions = users.map(user => (
     <option key={user.id} value={user.id}>
