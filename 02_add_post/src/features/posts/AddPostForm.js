@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+// Redux
 import { useDispatch, useSelector } from "react-redux";
 import { selectAllUsers } from "../users/usersSlice";
 // that will give us randomId
 import { postAdded } from "./postsSlice";
+//  assets
+import Cover from "../../assets/cover.png";
 
 const AddPostForm = () => {
   const dispatch = useDispatch();
@@ -37,29 +40,43 @@ const AddPostForm = () => {
   ));
 
   return (
-    <section>
+    <>
       <h2>Add a New Post</h2>
-      <form>
-        <label htmlFor="postTitle">Post Title:</label>
-        <input
-          type="text"
-          id="postTitle"
-          name="postTitle"
-          value={title}
-          onChange={onTitleChanged}
+      <section>
+        <form>
+          <label htmlFor="postTitle">Post Title:</label>
+          <input
+            type="text"
+            id="postTitle"
+            name="postTitle"
+            value={title}
+            onChange={onTitleChanged}
+          />
+          <label htmlFor="postAuthor">Author:</label>
+          <select id="postAuthor" value={userId} onChange={onAuthorChanged}>
+            <option value=""></option>
+            {usersOptions}
+          </select>
+          <label htmlFor="postContent">Content:</label>
+          <textarea
+            id="postContent"
+            name="postContent"
+            value={content}
+            onChange={onContentChanged}
+          />
+          <button type="button" onClick={onSavePostClicked} disabled={!canSave}>
+            Save Post
+          </button>
+        </form>
+        <img
+          style={{
+            width: "100%",
+          }}
+          src={Cover}
+          alt=""
         />
-        <label htmlFor="postAuthor">Author:</label>
-        <select id="postAuthor" value={userId} onChange={onAuthorChanged}>
-          <option value=""></option>
-          {usersOptions}
-        </select>
-        <label htmlFor="postContent">Content:</label>
-        <textarea id="postContent" name="postContent" value={content} onChange={onContentChanged} />
-        <button type="button" onClick={onSavePostClicked} disabled={!canSave}>
-          Save Post
-        </button>
-      </form>
-    </section>
+      </section>
+    </>
   );
 };
 
