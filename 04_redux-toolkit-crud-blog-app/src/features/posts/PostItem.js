@@ -8,9 +8,11 @@ import { ImBlogger } from "react-icons/im";
 import { MdDescription } from "react-icons/md";
 import { TbWriting } from "react-icons/tb";
 
+import { Link } from "react-router-dom";
+
 const PostItem = ({ post }) => {
   return (
-    <article key={post.id}>
+    <article>
       <div className="title">
         <div>
           <span className="icon">
@@ -37,12 +39,14 @@ const PostItem = ({ post }) => {
         </div>
         <p className="postCredit">
           {/* we pass the id which we received from postAdded payload */}
-          <PostAuthor userId={post.id} />
+          <PostAuthor userId={post.userId} />
           <TimeAgo timestamp={post.date} />
         </p>
       </div>
       <ReactionsButton post={post} />
-      <span className="view">View Post</span>
+      <Link className="view" to={`/post/${post.id}`}>
+        View Post
+      </Link>
     </article>
   );
 };

@@ -1,6 +1,9 @@
 section {
   margin-top: 70px;
 }
+a {
+  text-decoration: none;
+}
 .App {
   background-color: white;
   padding: 100px;
@@ -16,6 +19,9 @@ section {
   border-radius: 5px;
   /* color: #56ab2f; */
   /* background-color: #64b3f4; */
+}
+.header a {
+  color: white;
 }
 .navLinks {
   text-align: end;

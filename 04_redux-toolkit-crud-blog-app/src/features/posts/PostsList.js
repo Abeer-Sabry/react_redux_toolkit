@@ -1,30 +1,23 @@
-import React, { useEffect } from "react";
+import React from "react";
 // redux
-import { useSelector, useDispatch } from "react-redux";
-import { selectAllPosts, getPostsStatus, fetchPostsData } from "./postsSlice";
+import { useSelector } from "react-redux";
+import { selectAllPosts, getPostsStatus, getPostsError } from "./postsSlice";
+// component
 import PostItem from "./PostItem";
 
 const PostsList = () => {
   const posts = useSelector(selectAllPosts);
   const postsStatus = useSelector(getPostsStatus);
-
-  console.log("posts", posts);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (postsStatus === "idle") {
-      dispatch(fetchPostsData());
-    }
-  }, [postsStatus, dispatch]);
+  const error = useSelector(getPostsError);
 
   let content;
   if (postsStatus === "loading") {
-    content = <p>data is loading</p>;
+    content = <p>"Loading..."</p>;
   } else if (postsStatus === "succeeded") {
-    const orderedPosts = posts.slice(0, 11).sort((a, b) => b.date.localeCompare(a.date));
+    const orderedPosts = posts.slice().sort((a, b) => b.date.localeCompare(a.date));
     content = orderedPosts.map(post => <PostItem key={post.id} post={post} />);
   } else if (postsStatus === "failed") {
-    content = <p>error</p>;
+    content = <p>{error}</p>;
   }
   return (
     <section>

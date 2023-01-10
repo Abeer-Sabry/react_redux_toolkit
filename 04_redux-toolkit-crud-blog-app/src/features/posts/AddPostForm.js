@@ -1,38 +1,46 @@
 import React, { useState } from "react";
-// Redux
 import { useDispatch, useSelector } from "react-redux";
 import { selectAllUsers } from "../users/usersSlice";
 import { addNewPost } from "./postsSlice";
 // assets
 import Cover from "../../assets/cover.png";
+import { useNavigate } from "react-router-dom";
 
 const AddPostForm = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   // users-data from users-slice
   const users = useSelector(selectAllUsers);
 
-  // input-States
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  // we want the id of each user
   const [userId, setUserId] = useState("");
-  console.log("Boolean", Boolean(title));
+
+  const [addRequestStatus, setAddRequestStatus] = useState("idle");
+  console.log("userIdAddForm", userId);
 
   const onTitleChanged = e => setTitle(e.target.value);
   const onContentChanged = e => setContent(e.target.value);
   const onAuthorChanged = e => setUserId(e.target.value);
 
   // use these state ==> true
-  const canSave = [title, content, userId].every(Boolean);
+  const canSave = [title, content, userId].every(Boolean) && addRequestStatus === "idle";
   // addPost button function
   const onSavePostClicked = () => {
     if (canSave) {
-      // unwrap func that's function from redux toolkit to send a promise if the
-      // action fulfilled or rejected to track the action//
-      dispatch(addNewPost({ title, body: content })).unwrap();
-      setTitle("");
-      setContent("");
-      setUserId("");
+      try {
+        setAddRequestStatus("pending");
+        dispatch(addNewPost({ title, body: content, userId })).unwrap();
+
+        setTitle("");
+        setContent("");
+        setUserId("");
+        navigate("/");
+      } catch (err) {
+        console.error("Failed to save the post", err);
+      } finally {
+        setAddRequestStatus("idle");
+      }
     }
   };
   // Looping users-data
