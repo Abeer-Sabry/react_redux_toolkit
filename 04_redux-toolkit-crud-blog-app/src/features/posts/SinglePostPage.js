@@ -24,7 +24,7 @@ const SinglePostPage = () => {
   }
 
   return (
-    <>
+    <section>
       {post ? (
         <article>
           <Link to="/" className="singlePage">
@@ -37,16 +37,16 @@ const SinglePostPage = () => {
               </div>
               <h3 style={{ fontSize: "15px" }}> {post.title.substring(0, 60)}</h3>
             </div>
-          </Link>
-          <div className="title">
-            <div>
-              <span className="icon">
-                <MdDescription />
-              </span>
-            </div>
+            <div className="title">
+              <div>
+                <span className="icon">
+                  <MdDescription />
+                </span>
+              </div>
 
-            <p>{post.body.substring(0, 100)}</p>
-          </div>
+              <p>{post.body.substring(0, 100)}</p>
+            </div>
+          </Link>
           <div className="title">
             <div>
               <span className="icon">
@@ -61,13 +61,13 @@ const SinglePostPage = () => {
           </div>
           <ReactionsButton post={post} />
           <Link to={`/post/edit/${post.id}`}>
-            <span className="view">Edit Post</span>
+            <span className="view edit">Edit Post</span>
           </Link>
         </article>
       ) : (
         ""
       )}
-    </>
+    </section>
   );
 };
 

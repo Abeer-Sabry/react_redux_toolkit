@@ -15,7 +15,7 @@ const PostsList = () => {
       <h3 style={{ fontSize: "15px" }}>{post.title}</h3>
       <p>{post.content.substring(0, 100)}</p>
       <p className="postCredit">
-        {/* we pass the id which we received from postAdded payload */}
+        {/* we pass the user id which we received from postAdded payload */}
         <PostAuthor userId={post.userId} />
         <TimeAgo timestamp={post.date} />
       </p>

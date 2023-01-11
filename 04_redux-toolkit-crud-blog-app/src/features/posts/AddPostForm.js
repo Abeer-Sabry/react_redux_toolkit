@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectAllUsers } from "../users/usersSlice";
 import { addNewPost } from "./postsSlice";
 // assets
-import Cover from "../../assets/cover.png";
+import Cover from "../../assets/homePageCover-01-01.png";
 import { useNavigate } from "react-router-dom";
 
 const AddPostForm = () => {
@@ -84,13 +84,15 @@ const AddPostForm = () => {
             Save Post
           </button>
         </form>
-        <img
-          style={{
-            width: "100%",
-          }}
-          src={Cover}
-          alt=""
-        />
+        <div style={{ textAlign: "center" }}>
+          <img
+            style={{
+              width: "90%",
+            }}
+            src={Cover}
+            alt=""
+          />
+        </div>
       </main>
     </section>
   );

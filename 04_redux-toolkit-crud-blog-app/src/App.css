@@ -17,8 +17,6 @@ a {
   color: white;
   padding: 20px 30px;
   border-radius: 5px;
-  /* color: #56ab2f; */
-  /* background-color: #64b3f4; */
 }
 .header a {
   color: white;
@@ -38,14 +36,15 @@ main {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 30px;
-  align-items: center;
+  align-items: center !important;
 }
 article {
-  /* background-color: rgb(243, 243, 243); */
   color: rgb(46, 46, 46);
   padding: 20px;
   position: relative;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  width: 100%;
+  min-height: 240px;
 }
 article::before {
   content: "";
@@ -59,8 +58,9 @@ article::before {
 .title {
   display: flex;
   align-items: center;
+  color: rgb(46, 46, 46);
 }
-article .icon {
+.icon {
   background-color: #56ab2f;
   border-radius: 50%;
   display: inline-block;
@@ -83,6 +83,9 @@ article .icon {
   border-radius: 5px;
   cursor: pointer;
 }
+.view.edit {
+  background-color: #56ab2f;
+}
 /* form styling */
 label {
   font-size: 13px;
@@ -100,9 +103,92 @@ select {
   padding: 10px 0;
   background-color: transparent;
 }
+
 section h2 {
   color: #686afd;
   margin-bottom: 20px;
   font-size: 20px;
   text-transform: capitalize;
+}
+
+/* usersStyle */
+.userList {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  align-items: center;
+}
+.userList a,
+.postList a {
+  color: rgb(46, 46, 46);
+  font-size: 14px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  display: inline-block;
+  padding: 10px;
+  width: 100%;
+}
+.postList {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  align-items: center;
+  position: relative;
+}
+.postList a {
+  position: relative;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+}
+.postList a::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background-color: #686afd;
+}
+@media only screen and (max-width: 1460px) {
+  .userList {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media only screen and (max-width: 1460px) {
+  .postList {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@media only screen and (max-width: 1160px) {
+  .userList {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media only screen and (max-width: 860px) {
+  .userList {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+@media only screen and (max-width: 800px) {
+  .postList a {
+    font-size: 12px;
+  }
+}
+@media only screen and (max-width: 705px) {
+  .postList a .icon {
+    display: none;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .userList a,
+  .postList a {
+    font-size: 10px;
+  }
+}
+@media only screen and (max-width: 462px) {
+  .userList a .icon {
+    display: none;
+  }
 }

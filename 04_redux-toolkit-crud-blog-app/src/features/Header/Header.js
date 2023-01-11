@@ -13,7 +13,9 @@ const Header = () => {
         <Link to="/post">
           <span>posts</span>
         </Link>
-        <span>users</span>
+        <Link to="/user">
+          <span>users</span>
+        </Link>
       </div>
     </div>
   );

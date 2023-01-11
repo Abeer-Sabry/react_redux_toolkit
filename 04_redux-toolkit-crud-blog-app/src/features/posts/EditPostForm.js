@@ -4,7 +4,7 @@ import { selectAllUsers } from "../users/usersSlice";
 // React-Router
 import { useParams, useNavigate } from "react-router-dom";
 // assets
-import Cover from "../../assets/cover.png";
+import Cover from "../../assets/editForm.png";
 import { deletePost, getPostById, updatePost } from "./postsSlice";
 
 const EditPostForm = () => {
@@ -101,15 +101,26 @@ const EditPostForm = () => {
           </select>
           <label htmlFor="postContent">Content:</label>
           <textarea
+            cols={5}
+            rows={9}
             id="postContent"
             name="postContent"
             defaultValue={content}
             onChange={onContentChanged}
           />
-          <button type="button" onClick={onSavePostClicked} disabled={!canSave}>
+          <button
+            style={{ border: "1px solid #56ab2f", color: "#56ab2f" }}
+            type="button"
+            onClick={onSavePostClicked}
+            disabled={!canSave}
+          >
             Save Post
           </button>
-          <button className="deleteButton" type="button" onClick={onDeletePostClicked}>
+          <button
+            style={{ border: "1px solid red", color: "red" }}
+            type="button"
+            onClick={onDeletePostClicked}
+          >
             Delete Post
           </button>
         </form>

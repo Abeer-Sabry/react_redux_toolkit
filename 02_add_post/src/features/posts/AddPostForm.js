@@ -16,7 +16,6 @@ const AddPostForm = () => {
   const [content, setContent] = useState("");
   // we want the id of each user
   const [userId, setUserId] = useState("");
-  console.log("Boolean", Boolean(title));
 
   const onTitleChanged = e => setTitle(e.target.value);
   const onContentChanged = e => setContent(e.target.value);
