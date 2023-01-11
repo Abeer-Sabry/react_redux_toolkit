@@ -41,7 +41,7 @@ export const updatePost = createAsyncThunk("posts/updatePost", async (post, thun
   const { dispatch } = thunkAPI;
   try {
     const response = await axios.put(`${POSTS_URL}/${post.id}`, post);
-    dispatch(fetchPostsData());
+    dispatch(fetchPostById(post.id));
     return response.data;
   } catch (err) {
     return err.message;
