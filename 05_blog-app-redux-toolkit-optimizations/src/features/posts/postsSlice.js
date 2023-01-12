@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk, createSelector } from "@reduxjs/toolkit";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 // url
 const POSTS_URL = "https://blogs-api-bc3y.onrender.com/posts";
 
@@ -33,8 +33,10 @@ export const fetchPostById = createAsyncThunk("posts/fetchPostById", async id =>
 });
 // addNewPost
 export const addNewPost = createAsyncThunk("posts/addNewPost", async (post, thunkAPI) => {
+  const { dispatch } = thunkAPI;
   try {
     const response = await axios.post(POSTS_URL, post);
+    dispatch(fetchPostsData());
     return response.data;
   } catch (error) {}
 });
@@ -43,10 +45,9 @@ export const updatePost = createAsyncThunk("posts/updatePost", async (post, thun
   const { dispatch } = thunkAPI;
   try {
     const response = await axios.put(`${POSTS_URL}/${post.id}`, post);
-    // if (response.status === "200") {
-    // }
+
     dispatch(fetchPostById(post.id));
-    useNavigate("/");
+    // useNavigate(`/post/${post.id}`);
     return response.data;
   } catch (err) {
     return err.message;
