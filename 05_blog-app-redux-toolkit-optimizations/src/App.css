@@ -32,6 +32,9 @@ a {
   cursor: pointer;
 }
 /* postsStyling*/
+img {
+  width: 100%;
+}
 main {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -71,6 +74,9 @@ article::before {
   text-align: center;
   font-size: 13px;
   margin-right: 10px;
+}
+.mainTitle {
+  font-size: 15px;
 }
 .view {
   position: absolute;
@@ -160,6 +166,11 @@ section h2 {
     grid-template-columns: repeat(1, 1fr);
   }
 }
+@media only screen and (max-width: 1200px) {
+  main {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
 
 @media only screen and (max-width: 1160px) {
   .userList {
@@ -175,10 +186,20 @@ section h2 {
   .postList a {
     font-size: 12px;
   }
+  .header {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .navLinks {
+    text-align: start;
+  }
+  .navLinks span:first-child {
+    margin: 10px 10px 0 0;
+  }
 }
-@media only screen and (max-width: 705px) {
-  .postList a .icon {
-    display: none;
+
+@media only screen and (max-width: 560px) {
+  .App {
+    padding: 50px;
   }
 }
 @media only screen and (max-width: 500px) {
@@ -186,9 +207,20 @@ section h2 {
   .postList a {
     font-size: 10px;
   }
-}
-@media only screen and (max-width: 462px) {
-  .userList a .icon {
-    display: none;
+  main p {
+    font-size: 12px;
+  }
+  article p {
+    font-size: 10px;
+  }
+  .mainTitle,
+  .author {
+    font-size: 12px;
+  }
+  .view {
+    font-size: 10px;
+  }
+  .view.edit {
+    font-size: 9px;
   }
 }

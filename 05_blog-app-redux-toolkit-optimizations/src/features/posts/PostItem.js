@@ -19,7 +19,7 @@ const PostItem = ({ post }) => {
             <ImBlogger />
           </span>
         </div>
-        <h3 style={{ fontSize: "15px" }}> {post?.title.substring(0, 60)}</h3>
+        <h3 className="mainTitle"> {post?.title.substring(0, 60)}</h3>
       </div>
       <div className="title">
         <div>

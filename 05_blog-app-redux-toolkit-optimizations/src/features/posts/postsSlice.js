@@ -1,7 +1,9 @@
 import { createSlice, createAsyncThunk, createSelector } from "@reduxjs/toolkit";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 // url
 const POSTS_URL = "https://blogs-api-bc3y.onrender.com/posts";
+
 // state
 const initialState = {
   posts: [],
@@ -41,7 +43,10 @@ export const updatePost = createAsyncThunk("posts/updatePost", async (post, thun
   const { dispatch } = thunkAPI;
   try {
     const response = await axios.put(`${POSTS_URL}/${post.id}`, post);
+    // if (response.status === "200") {
+    // }
     dispatch(fetchPostById(post.id));
+    useNavigate("/");
     return response.data;
   } catch (err) {
     return err.message;

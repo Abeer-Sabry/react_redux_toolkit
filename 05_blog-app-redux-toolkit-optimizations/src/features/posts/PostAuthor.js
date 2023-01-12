@@ -8,7 +8,7 @@ const PostAuthor = ({ userId }) => {
   const author = users.find(user => user.id === userId);
   // we find it ? display it's name
   return (
-    <span>
+    <span className="author">
       by
       <mark> {author ? author.name : "unKnown author"} </mark>
     </span>

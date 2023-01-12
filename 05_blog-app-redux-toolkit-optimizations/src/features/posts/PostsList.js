@@ -5,6 +5,7 @@ import { selectAllPosts, getPostsStatus, getPostsError, fetchPostsData } from ".
 // component
 import PostItem from "./PostItem";
 import HomeCover from "../../assets/cover.png";
+import Spinner from "../../components/Spinner/Spinner";
 
 const PostsList = () => {
   const dispatch = useDispatch();
@@ -16,21 +17,22 @@ const PostsList = () => {
     dispatch(fetchPostsData());
   }, [dispatch]);
 
-  let content;
-  if (postsStatus === "loading") {
-    content = <p>"Loading..."</p>;
-  } else if (postsStatus === "succeeded") {
-    // const orderedPosts = posts.slice().sort((a, b) => b.date.localeCompare(a.date));
-    content = posts.map(post => <PostItem key={post.id} post={post} />);
-  } else if (postsStatus === "failed") {
-    content = <p>{error}</p>;
-  }
   return (
     <section>
       <div style={{ textAlign: "center", marginBottom: "50px" }}>
-        <img style={{ width: "90%" }} src={HomeCover} alt="add blog" />
+        <img className="homeImage" src={HomeCover} alt="add blog" />
       </div>
-      <main>{content}</main>
+      {postsStatus === "loading" ? (
+        <Spinner />
+      ) : postsStatus === "succeeded" ? (
+        <main>
+          {posts.map(post => (
+            <PostItem key={post.id} post={post} />
+          ))}
+        </main>
+      ) : (
+        postsStatus === "failed" && <p>{error}</p>
+      )}
     </section>
   );
 };
